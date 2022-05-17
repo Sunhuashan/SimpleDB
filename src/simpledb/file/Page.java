@@ -86,10 +86,12 @@ public class Page {
     }
 
     /**
-     * 将缓冲区内的数据追加到指定文件的最后一个物理块
+     * 将缓冲区内的数据追加到指定文件的最后一个物理块，
+     * 并返回物理块的引用
      * @param filename
+     * @return
      */
-    public synchronized void append(String filename) {
-        fm.append(content, filename);
+    public synchronized Block append(String filename) {
+        return fm.append(content, filename);
     }
 }
