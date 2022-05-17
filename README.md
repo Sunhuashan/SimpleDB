@@ -1,1 +1,1 @@
-# SimpleDB
+# simpledb.SimpleDB

@@ -1,8 +1,7 @@
 package simpledb.file;
-
+import simpledb.SimpleDB;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 /**
  * @Author: shs
@@ -15,15 +14,15 @@ import java.nio.charset.StandardCharsets;
 public class Page {
     public static final int BLOCK_SIZE = 400;
     public static final int INT_SIZE = Integer.SIZE / Byte.SIZE;
-
     public static final int STR_SIZE(int n) {
         // 机器字符集中char的字节数
         float bytesPerChar = Charset.defaultCharset().newEncoder().maxBytesPerChar();
         return n * (int)bytesPerChar;
     }
-
     private ByteBuffer content = ByteBuffer.allocateDirect(BLOCK_SIZE);
-    private FileManager fm = new FileManager();
+    private FileManager fmg = SimpleDB.fileManager();
+
+
     /**
      * 向缓冲区内存入一个整数
      * @param offset
@@ -74,7 +73,7 @@ public class Page {
      * @param block
      */
     public synchronized void write(Block block) {
-        fm.write(content, block);
+        fmg.write(content, block);
     }
 
     /**
@@ -82,7 +81,7 @@ public class Page {
      * @param block
      */
     public synchronized void read(Block block) {
-        fm.read(content, block);
+        fmg.read(content, block);
     }
 
     /**
@@ -92,6 +91,6 @@ public class Page {
      * @return
      */
     public synchronized Block append(String filename) {
-        return fm.append(content, filename);
+        return fmg.append(content, filename);
     }
 }
