@@ -1,6 +1,6 @@
 package simpledb.file;
 
-import simpledb.SimpleDB;
+import simpledb.server.SimpleDB;
 
 /**
  * 文件管理功能单元测试

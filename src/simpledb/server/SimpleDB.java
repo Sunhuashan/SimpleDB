@@ -1,4 +1,4 @@
-package simpledb;
+package simpledb.server;
 
 import simpledb.file.FileManager;
 

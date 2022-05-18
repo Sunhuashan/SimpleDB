@@ -1,1 +1,1 @@
-# simpledb.SimpleDB
+# simpledb.server.SimpleDB
