@@ -29,5 +29,10 @@ public class Test {
         String s = p1.getString(16);
         System.out.println("test int value: " + n);
         System.out.println("test String value: " + s);
+
+        //将缓冲区中的数据追加至文件最后一个物理块
+        p1.setInt(128, 17);
+        Block block = p1.append("stuTbl");
+        System.out.println("The last block is: " + block.toString());
     }
 }
