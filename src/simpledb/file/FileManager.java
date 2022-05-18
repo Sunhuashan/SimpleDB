@@ -16,7 +16,7 @@ import java.util.Map;
  * @date 2022/5/17 10:06
  */
 public class FileManager {
-    private static final String HOME_DIR = "E:\\SimpleDB_date";
+    private static final String HOME_DIR = "E:\\SimpleDB_data";
     private File dbDirectory;
     private boolean isNew;
     private Map<String, FileChannel> openedFiles = new HashMap<>();
@@ -33,8 +33,10 @@ public class FileManager {
         isNew = !dbDirectory.exists();
 
         //创建数据库目录
-        if (!isNew && dbDirectory.mkdir()) {
-            throw new RuntimeException("Create database" + dbName + "fail!");
+        if (isNew) {
+            if (!dbDirectory.mkdirs()) {
+                throw new RuntimeException("Cannot create directory" + dbDirectory);
+            }
         }
 
         //删除临时文件
