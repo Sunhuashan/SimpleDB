@@ -22,7 +22,7 @@ public class Block {
      * @param blkNum
      * 文件块号
      */
-    Block(String filename, int blkNum) {
+    public Block(String filename, int blkNum) {
         this.filename = filename;
         this.blkNum = blkNum;
     }
