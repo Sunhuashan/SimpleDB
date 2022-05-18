@@ -19,7 +19,7 @@ public class FileManager {
     private static final String HOME_DIR = "E:\\SimpleDB_data";
     private File dbDirectory;
     private boolean isNew;
-    private Map<String, FileChannel> openedFiles = new HashMap<>();
+    private Map<String, RandomAccessFile> openedFiles = new HashMap<>();
 
 
     /**
@@ -69,32 +69,30 @@ public class FileManager {
      * If some I/O error occurs
      */
     public int size(String filename) throws IOException{
-        FileChannel fc = getFileChannel(filename);
+        FileChannel fc = getFile(filename).getChannel();
         return (int) fc.size() / Page.BLOCK_SIZE;
     }
 
     /**
-     * 根据文件名返回文件读写通道
+     * 根据文件名返回文件读写流
      *
      * @param filename
      * 文件名
      *
      * @return
-     * 文件读写通道 FileChannel
+     * 文件读写流 RandomAccessFile
      *
      * @throws IOException
      * If some I/O error occurs
      */
-    private synchronized FileChannel getFileChannel(String filename) throws IOException {
-        FileChannel fc = openedFiles.get(filename);
-        if (fc == null) {
+    private synchronized RandomAccessFile getFile(String filename) throws IOException {
+        RandomAccessFile raf = openedFiles.get(filename);
+        if (raf == null) {
             File f = new File(dbDirectory, filename);
-            try(RandomAccessFile raf = new RandomAccessFile(f, "rws")) {
-                fc = raf.getChannel();
-                openedFiles.put(filename, fc);
-            }
+            raf = new RandomAccessFile(f, "rws");
+            openedFiles.put(filename, raf);
         }
-        return fc;
+        return raf;
     }
 
     /**
@@ -108,7 +106,7 @@ public class FileManager {
      */
     synchronized void write(ByteBuffer buffer, Block block) {
         try {
-            FileChannel fc = getFileChannel(block.getFilename());
+            FileChannel fc = getFile(block.getFilename()).getChannel();
             fc.write(buffer, Page.BLOCK_SIZE * block.getBlkNum());
         } catch (IOException e) {
             e.printStackTrace();
@@ -128,7 +126,7 @@ public class FileManager {
      */
     synchronized void read(ByteBuffer buffer, Block block) {
         try {
-            FileChannel fc = getFileChannel(block.getFilename());
+            FileChannel fc = getFile(block.getFilename()).getChannel();
             fc.read(buffer, Page.BLOCK_SIZE * block.getBlkNum());
         } catch (IOException e) {
             e.printStackTrace();
