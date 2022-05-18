@@ -16,7 +16,7 @@ import java.util.Map;
  * @date 2022/5/17 10:06
  */
 public class FileManager {
-    private static final String HOME_DIR = "E:\\SimpleDB_data";
+    public static final String HOME_DIR = System.getProperty("user.home");
     private File dbDirectory;
     private boolean isNew;
     private Map<String, RandomAccessFile> openedFiles = new HashMap<>();
