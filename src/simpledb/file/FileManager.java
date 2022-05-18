@@ -111,6 +111,7 @@ public class FileManager {
             FileChannel fc = getFileChannel(block.getFilename());
             fc.write(buffer, Page.BLOCK_SIZE * block.getBlkNum());
         } catch (IOException e) {
+            e.printStackTrace();
             throw new RuntimeException("Cannot write block" + block.toString());
         }
     }
@@ -130,6 +131,7 @@ public class FileManager {
             FileChannel fc = getFileChannel(block.getFilename());
             fc.read(buffer, Page.BLOCK_SIZE * block.getBlkNum());
         } catch (IOException e) {
+            e.printStackTrace();
             throw new RuntimeException("Cannot read block" + block.toString());
         }
     }
@@ -152,6 +154,7 @@ public class FileManager {
             write(buffer, newBlk);
             return newBlk;
         } catch (IOException e) {
+            e.printStackTrace();
             throw new RuntimeException("Cannot append to file :" + filename);
         }
     }

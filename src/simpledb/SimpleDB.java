@@ -8,8 +8,12 @@ import simpledb.file.FileManager;
  */
 public class SimpleDB {
 
+    private static FileManager fmg;
+    public static void init(String bdName) {
+        fmg = new FileManager(bdName);
+    }
 
     public static FileManager fileManager() {
-        return new FileManager("first_db");
+        return fmg;
     }
 }
