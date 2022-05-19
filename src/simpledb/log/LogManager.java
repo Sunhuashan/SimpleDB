@@ -20,7 +20,7 @@ public class LogManager {
 
     // [LAST_POS, LAST_POS + 3]四个字节组成一个整数
     // 记录了当前日志缓冲区有效数据最后位置
-    private static final int LAST_POS = 0;
+    static final int LAST_POS = 0;
     // 日志文件读入内存中的物理块
     private Block currentBlk;
     // 日志文件的内存缓冲区
@@ -179,8 +179,9 @@ public class LogManager {
      * 每追加一条日志记录后的操作
      * <p>
      * 向内存缓冲区追加一条日志记录后，在该记录后四个字节写入一个整数
-     * 该整数为插入该记录前的缓冲区末尾，即上一条记录末尾的后一位
-     * 然后，修改末尾位置和当前位置的值
+     * 该整数为插入该记录前的整个缓冲区末尾位置，即上一条记录末尾的后一位的位置，
+     * 该位置往后记录一个整数，这个整数是上一条记录的起始位置。
+     * 之后，修改缓冲区末尾位置和当前位置的值
      * </p>
      */
     private void finalizeRecord() {
