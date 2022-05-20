@@ -39,7 +39,7 @@ public class LogIterator implements Iterator<BasicLogRecord> {
 
     @Override
     public boolean hasNext() {
-        return currentRec > 0 || currentBlk.getBlkNum() > 0;
+        return currentRec > 0 || currentBlk.getBlkNum() >= 0;
     }
 
     @Override
