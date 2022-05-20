@@ -104,6 +104,18 @@ public class LogManager {
     }
 
     /**
+     * 获取当前物理块的迭代器
+     *
+     *
+     * @return
+     * 日志记录迭代器
+     */
+    public Iterator<BasicLogRecord> Iterator() {
+        flush();
+        return new LogIterator(currentBlk);
+    }
+
+    /**
      * 在日志文件中追加一个物理块
      *
      *
