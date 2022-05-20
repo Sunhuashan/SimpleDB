@@ -124,6 +124,7 @@ public class LogManager {
      */
     private void appendNewBlock() throws IOException{
         Block newBlock = new Block(filename, 0);
+        currentBlk = newBlock;
         logPage.read(newBlock);
     }
 
