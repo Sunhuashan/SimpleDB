@@ -17,7 +17,7 @@ public class Page {
     public static final int STR_SIZE(int n) {
         // 机器字符集中char的字节数
         float bytesPerChar = Charset.defaultCharset().newEncoder().maxBytesPerChar();
-        return n * (int)bytesPerChar;
+        return n * (int)bytesPerChar + INT_SIZE;
     }
     private ByteBuffer content = ByteBuffer.allocateDirect(BLOCK_SIZE);
     private FileManager fmg = SimpleDB.fileManager();
