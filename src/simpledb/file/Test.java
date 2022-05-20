@@ -21,9 +21,11 @@ public class Test {
         //向物理块写入内存缓冲区中的数据
         p1.setInt(0, 20);
         p1.setString(16, "Hello,SimpleDB");
+        p1.setInt(396, 0xff);
         p1.write(b1);
 
         //从物理块中读取数据至内存缓冲区,打印
+        p1 = new Page();
         p1.read(b1);
         int n = p1.getInt(0);
         String s = p1.getString(16);
@@ -32,8 +34,12 @@ public class Test {
 
         //将缓冲区中的数据追加至文件最后一个物理块
         p1 = new Page();
-        p1.setInt(0, 17);
+        p1.setInt(0, 20);
+        p1.setString(16, "Hello,SimpleDB");
+        p1.setInt(396, 0xff);
         Block block = p1.append("stuTbl");
         System.out.println("The last block is: " + block.toString());
+
+
     }
 }
