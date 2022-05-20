@@ -31,7 +31,8 @@ public class Test {
         System.out.println("test String value: " + s);
 
         //将缓冲区中的数据追加至文件最后一个物理块
-        p1.setInt(128, 17);
+        p1 = new Page();
+        p1.setInt(0, 17);
         Block block = p1.append("stuTbl");
         System.out.println("The last block is: " + block.toString());
     }

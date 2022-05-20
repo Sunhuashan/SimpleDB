@@ -106,6 +106,7 @@ public class FileManager {
      */
     synchronized void write(ByteBuffer buffer, Block block) {
         try {
+            buffer.rewind();
             FileChannel fc = getFile(block.getFilename()).getChannel();
             fc.write(buffer, Page.BLOCK_SIZE * block.getBlkNum());
         } catch (IOException e) {
@@ -126,6 +127,7 @@ public class FileManager {
      */
     synchronized void read(ByteBuffer buffer, Block block) {
         try {
+            buffer.clear();
             FileChannel fc = getFile(block.getFilename()).getChannel();
             fc.read(buffer, Page.BLOCK_SIZE * block.getBlkNum());
         } catch (IOException e) {

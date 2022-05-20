@@ -31,6 +31,8 @@ public class Test {
             throw new RuntimeException("Cannot append log in " + dbName);
         }
 
+        lMg.flush();
+
         Iterator<BasicLogRecord> it = lMg.Iterator();
         while (it.hasNext()) {
             BasicLogRecord rec = it.next();
