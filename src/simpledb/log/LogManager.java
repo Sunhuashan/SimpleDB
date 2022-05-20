@@ -123,9 +123,8 @@ public class LogManager {
      * 读写异常
      */
     private void appendNewBlock() throws IOException{
-        Block newBlock = new Block(filename, 0);
-        currentBlk = newBlock;
-        logPage.read(newBlock);
+        setLastRecordPos(0);
+        currentBlk = logPage.append(filename);
     }
 
     /**
