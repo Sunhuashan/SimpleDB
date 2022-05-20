@@ -1,6 +1,9 @@
 package simpledb.server;
 
 import simpledb.file.FileManager;
+import simpledb.log.LogManager;
+
+import java.io.IOException;
 
 /**
  * @author shs
@@ -8,12 +11,25 @@ import simpledb.file.FileManager;
  */
 public class SimpleDB {
 
-    private static FileManager fmg;
+    private static FileManager fMg;
+    private static LogManager lMg;
+
     public static void init(String bdName) {
-        fmg = new FileManager(bdName);
+        fMg = new FileManager(bdName);
+
+        String logFilename = bdName + "_log";
+        try {
+            lMg = new LogManager(logFilename);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Cannot create log manager named " + logFilename);
+        }
     }
 
     public static FileManager fileManager() {
-        return fmg;
+        return fMg;
+    }
+    public static LogManager logManager() {
+        return lMg;
     }
 }
