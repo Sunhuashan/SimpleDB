@@ -10,6 +10,9 @@ import static simpledb.log.LogManager.LAST_POS;
 
 /**
  * 日志记录迭代器
+ * <p>
+ * 从指定块末尾开始，逆向遍历整个日志文件
+ * </p>
  *
  *
  * @author shs
@@ -21,6 +24,13 @@ public class LogIterator implements Iterator<BasicLogRecord> {
     private Page page = new Page();
     private int currentRec;
 
+    /**
+     * 为指定物理块中的日志记录构造一个迭代器
+     *
+     *
+     * @param block
+     * 指定的物理块
+     */
     LogIterator(Block block) {
         currentBlk = block;
         page.read(block);
@@ -37,7 +47,7 @@ public class LogIterator implements Iterator<BasicLogRecord> {
         if (0 == currentRec)
             removeToNextBlk();
         currentRec = page.getInt(currentRec);
-        return null;
+        return new BasicLogRecord(page, currentRec + INT_SIZE);
     }
 
     @Override
@@ -45,6 +55,9 @@ public class LogIterator implements Iterator<BasicLogRecord> {
         throw new UnsupportedOperationException("Cannot execute this operation for log record");
     }
 
+    /**
+     * 当前块迭代完毕后，移至上一块
+     */
     private void removeToNextBlk() {
         currentBlk = new Block(currentBlk.getFilename(), currentBlk.getBlkNum() - 1);
         page.read(currentBlk);
