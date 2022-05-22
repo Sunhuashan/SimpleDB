@@ -67,7 +67,7 @@ public class LogManager {
      * @throws IOException
      * 读写异常
      */
-    public int append(Object[] record) throws IOException{
+    public synchronized int append(Object[] record) throws IOException{
         int recSize = INT_SIZE;
         for(Object obj : record) {
             recSize += size(obj);
