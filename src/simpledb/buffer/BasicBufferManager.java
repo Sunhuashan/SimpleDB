@@ -63,7 +63,7 @@ public class BasicBufferManager {
 
             buffer.assignToBlock(blk);
         }
-        if (buffer.isPinned())
+        if (!buffer.isPinned())
             availableNum--;
         buffer.pin();
         return buffer;
