@@ -4,7 +4,7 @@ import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
 import simpledb.file.Block;
 
 /**
- * 负责管理缓冲池，为事务提供访问缓冲区的接口
+ * 负责管理缓冲池
  *
  *
  * @author shs
