@@ -67,7 +67,7 @@ public class LogManager {
      * @throws IOException
      * 读写异常
      */
-    public synchronized int append(Object[] record) throws IOException{
+    public synchronized int append(Object[] record) {
         int recSize = INT_SIZE;
         for(Object obj : record) {
             recSize += size(obj);
@@ -122,7 +122,7 @@ public class LogManager {
      * @throws IOException
      * 读写异常
      */
-    private void appendNewBlock() throws IOException{
+    private void appendNewBlock() {
         setLastRecordPos(0);
         currentBlk = logPage.append(filename);
     }
