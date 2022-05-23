@@ -88,7 +88,7 @@ public class SetStringRecord implements LogRecord{
 
     @Override
     public String toString() {
-        return "<SET_STRING " + txNum + " " + blk.getFilename() + " "
+        return "<SET_STRING " + txNum + " " + blk + " "
                 + offset + " " + val + ">";
     }
 }
