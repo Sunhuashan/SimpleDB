@@ -32,7 +32,8 @@ public class SetIntRecord implements LogRecord{
     }
 
     public SetIntRecord(BasicLogRecord blr) {
-        int operator = blr.nextInt();
+        //操作数已经在调用该方法前获取
+        //int operator = blr.nextInt();
         this.txNum = blr.nextInt();
         this.blk = new Block(blr.nextString(), blr.nextInt());
         this.offset = blr.nextInt();

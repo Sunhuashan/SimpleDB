@@ -56,7 +56,8 @@ public class SetStringRecord implements LogRecord{
      * 构造参数
      */
     public SetStringRecord(BasicLogRecord basicLogRec) {
-        int operator = basicLogRec.nextInt();
+        //操作数已经在调用该方法前获取
+        //int operator = basicLogRec.nextInt();
         this.txNum = basicLogRec.nextInt();
         this.blk = new Block(basicLogRec.nextString(), basicLogRec.nextInt());
         this.offset = basicLogRec.nextInt();
