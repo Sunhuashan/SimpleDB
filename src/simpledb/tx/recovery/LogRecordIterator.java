@@ -44,6 +44,6 @@ public class LogRecordIterator implements Iterator<LogRecord> {
 
     @Override
     public void remove() {
-        Iterator.super.remove();
+        throw new UnsupportedOperationException();
     }
 }

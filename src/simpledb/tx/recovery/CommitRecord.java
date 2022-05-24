@@ -1,6 +1,7 @@
 package simpledb.tx.recovery;
 
 import simpledb.log.BasicLogRecord;
+import simpledb.server.SimpleDB;
 
 /**
  * 事务提交对应的格式化日志记录，记录格式为：
@@ -21,22 +22,25 @@ public class CommitRecord implements LogRecord{
     }
 
     public CommitRecord(BasicLogRecord blr) {
-
+        //操作数已经在调用该方法前获取
+        //int operator = blr.nextInt();
+        this.txNum = blr.nextInt();
     }
 
     @Override
     public int writeToLog() {
-        return 0;
+        Object[] rec = new Object[]{COMMIT, txNum};
+        return SimpleDB.logManager().append(rec);
     }
 
     @Override
     public int operator() {
-        return 0;
+        return COMMIT;
     }
 
     @Override
     public int txNumber() {
-        return 0;
+        return txNum;
     }
 
     @Override
