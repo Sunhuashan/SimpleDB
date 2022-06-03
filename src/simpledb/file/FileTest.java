@@ -9,7 +9,7 @@ import simpledb.server.SimpleDB;
  * @author shs
  * @date 2022/5/18 11:27
  */
-public class Test {
+public class FileTest {
     public static void main(String[] args) {
         //创建数据库目录，以及该目录的File Manager对象
         SimpleDB.init("first_db");
