@@ -27,7 +27,7 @@ public class BufferTest {
 
         //修改缓冲区
         LogManager lMg = SimpleDB.logManager();
-        //日志记录：filename | block number | offset | value before modify
+        //假象日志记录：filename | block number | offset | value before modify
         Object[] rec = {"stuTbl", 0, 0, intVal};
         int lsn = lMg.append(rec);
 

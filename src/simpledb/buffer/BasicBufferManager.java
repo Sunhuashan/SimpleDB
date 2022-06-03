@@ -58,6 +58,7 @@ public class BasicBufferManager {
         if (null == buffer) {
             buffer = chooseUnpinnedBuffer();
 
+            //调用者进入wait()状态
             if (null == buffer)
                 return null;
 

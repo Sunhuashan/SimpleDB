@@ -35,6 +35,7 @@ public class BufferManager {
                 wait(MAX_TIME);
                 buffer = basicBufferMgr.pin(block);
             }
+            //等待时间超出阈值仍未获取到Buffer对象，抛出异常由调用者处理
             if (null == buffer) {
                 throw new BufferAbortException();
             }
