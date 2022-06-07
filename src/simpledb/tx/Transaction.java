@@ -70,7 +70,7 @@ public class Transaction {
 
    public int size(String filename) throws IOException {
       Block endOfFile = new Block(filename, -1);
-      cmg.xLock(endOfFile);
+      cmg.sLock(endOfFile);
       return SimpleDB.fileManager().size(filename);
    }
    public Block append(String filename, PageFormatter fmt) {
