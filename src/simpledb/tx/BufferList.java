@@ -65,11 +65,11 @@ public class BufferList {
      * @return
      * 存放物理块的缓冲区
      */
-    Buffer pinNew(String filename, PageFormatter fmt) {
+     Block pinNew(String filename, PageFormatter fmt) {
         Buffer buffer = bmg.pinNew(filename, fmt);
         buffers.put(buffer.block(), buffer);
         blocks.add(buffer.block());
-        return buffer;
+        return buffer.block();
     }
 
     /**
