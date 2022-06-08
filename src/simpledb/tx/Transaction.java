@@ -182,6 +182,10 @@ public class Transaction {
       return block;
    }
 
+   public int getTxNum() {
+      return txNum;
+   }
+
    private static synchronized int nextTxNum() {
       ++nextTxNum;
       System.out.println("new transaction number is " + nextTxNum);
