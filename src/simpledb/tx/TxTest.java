@@ -44,7 +44,7 @@ class TestA implements Runnable {
         System.out.println("Tx A end read b1");
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -74,7 +74,7 @@ class TestB implements Runnable{
         System.out.println("Tx B the string val set in b2 is B");
         System.out.println("Tx B end read b2");
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -104,7 +104,7 @@ class TestC implements Runnable {
         System.out.println("Tx C end write b1");
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
